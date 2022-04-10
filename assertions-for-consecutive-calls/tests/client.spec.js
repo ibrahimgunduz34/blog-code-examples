@@ -100,6 +100,7 @@ describe('Unit Tests - Client', () => {
 
       const firstDummyParsedResponse = [{ key1: "value 1" }, { key2: "value 2" }];
       const secondDummyParsedResponse = [{ key3: "value 3" }, { key4: "value 4" }]
+      const expectedResult = [...firstDummyParsedResponse, ...secondDummyParsedResponse];
 
       requestBuilderStub.buildGetListRequest
         .onCall(0).returns(firstDummyRequest)
@@ -112,8 +113,6 @@ describe('Unit Tests - Client', () => {
       responseParserStub.parseGetListResponse
         .onCall(0).returns(firstDummyParsedResponse)
         .onCall(1).returns(secondDummyParsedResponse);
-
-      const expectedResult = [...firstDummyParsedResponse, ...secondDummyParsedResponse];
 
         await expect(client.getList()).to.be.fulfilled.and.eventually.deep.equal(expectedResult);
         
