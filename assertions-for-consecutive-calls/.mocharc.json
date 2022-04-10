@@ -1,0 +1,5 @@
+{
+  "spec": "tests/**/*.spec.js",
+  "color": true,
+  "timeout": 500
+}
