@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2019",
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "outDir": ".build",
+        "lib": ["ES2019"],
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+    "include": [
+        "src/**/*",
+        "test/**/*"
+    ]
+}
