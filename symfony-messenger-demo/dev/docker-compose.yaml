@@ -1,0 +1,81 @@
+version: "2.1"
+services:
+  nginx:
+    build:
+      dockerfile: dev/Dockerfile_nginx
+      context: ../
+    image: symfony-messenger-demo-nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ../:/var/www/app
+
+  web.local:
+    build:
+      dockerfile: ./dev/Dockerfile
+      context: ../
+    image: symfony-messenger-demo:latest
+    volumes:
+      - ../:/var/www/app
+
+  amqp.consumer.local:
+    image: symfony-messenger-demo:latest
+    depends_on:
+      rabbitmq.server.local:
+        condition: service_healthy
+      mariadb.local:
+        condition: service_healthy
+      init:
+        condition: service_healthy
+    volumes:
+      - ../:/var/www/app
+    command: /var/www/app/bin/console messenger:consume amqp_email_notification -vv
+    restart: always
+
+  failed.consumer.local:
+    image: symfony-messenger-demo:latest
+    depends_on:
+      rabbitmq.server.local:
+        condition: service_healthy
+      mariadb.local:
+        condition: service_healthy
+      init:
+        condition: service_healthy
+    volumes:
+      - ../:/var/www/app
+    command: /var/www/app/bin/console messenger:consume failed -vv
+    restart: always
+
+  rabbitmq.server.local:
+    image: rabbitmq:3.7.17-management
+    ports:
+      - 15672:15672
+    healthcheck:
+      test: ["CMD", "/opt/rabbitmq/sbin/rabbitmqctl","status"]
+      interval: 2s
+      timeout: 40s
+      retries: 20
+
+  mariadb.local:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 30s
+      retries: 10
+
+  init:
+    image: symfony-messenger-demo:latest
+    volumes:
+      - ../:/var/www/app
+    depends_on:
+      mariadb.local:
+        condition: service_healthy
+    healthcheck:
+      test: "exit 0"
+      interval: 3s
+      timeout: 30s
+      retries: 10
+    command: "sh /var/www/app/dev/scripts/init.sh"

@@ -1,0 +1,23 @@
+# config/packages/messenger.yaml
+framework:
+    messenger:
+        failure_transport: failed
+        transports:
+            failed:
+                dsn: 'doctrine://default'
+                options:
+                    table_name: failed_messages
+            amqp_email_notification:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                retry_strategy:
+                    max_retries: 3
+                    delay: 1000
+                    multiplier: 2
+                options:
+                    exchange:
+                        name: email_notifications
+                        type: fanout
+                    queues:
+                        email_notifications: ~
+        routing:
+            App\Message\EmailNotification: amqp_email_notification
