@@ -1,0 +1,34 @@
+### Call /greeting without authentication
+GET http://localhost:3000/greeting
+
+> {%
+client.test("Response status code", function () {
+    client.assert(response.status == 403, "Expected to receive HTTP/403 response status code");
+})
+%}
+
+### Authenticate
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "password"
+}
+
+> {%
+    client.test("Response status code", function () {
+        client.assert(response.status == 200, "Expected to receive HTTP/200 response status code");
+        client.global.set("sessionToken", response.body.token);
+    })
+ %}
+
+### Call /greeting WITH authentication
+GET http://localhost:3000/greeting
+Authorization: Bearer {{sessionToken}}
+
+> {%
+    client.test("Response status code", function () {
+        client.assert(response.status == 200, "Expected to receive HTTP/200 response status code");
+    })
+%}
