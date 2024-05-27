@@ -1,0 +1,29 @@
+spring:
+  sql:
+    init:
+      # Just to load initial data for the demo. DO NOT USE IT IN PRODUCTION
+      mode: always
+  datasource:
+    # Put your
+    url: jdbc:mysql://localhost:3306/demo-dev
+    username: devuser
+    password: devpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    # Just to load initial data for the demo. DO NOT USE IT IN PRODUCTION
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      indent-output: true
+
+server:
+  port: 3000
+
+application:
+  security:
+    secret-key: 3MP8Xi8ExjXcPHbOO3wWLRHJDGqwK6XV
+    jwt-ttl: 300000
