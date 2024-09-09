@@ -1,0 +1,27 @@
+{
+  "name": "sample-project",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register '*.test.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@types/chai": "^4.3.19",
+    "@types/mocha": "^10.0.7",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "save-dev": "^0.0.1-security",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": true
+  }
+}
