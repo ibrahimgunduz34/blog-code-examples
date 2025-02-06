@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "payment.processor.enabled",
+      "type": "java.lang.String",
+      "description": "Enable the real payment processor if it is true"
+  }
+] }
