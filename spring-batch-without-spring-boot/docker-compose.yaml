@@ -1,0 +1,43 @@
+name: spring-batch
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: catalog_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  mockserver:
+    hostname: acme.net
+    build:
+      context: mockserver/.
+      dockerfile: Dockerfile
+    image: mockserver:latest
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3000/catalogs/download" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    volumes:
+      - ./mockserver/samples:/srv/samples
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring-batch-demo:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mockserver:
+        condition: service_healthy
