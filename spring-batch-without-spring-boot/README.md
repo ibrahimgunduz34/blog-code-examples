@@ -1,6 +1,6 @@
 # Spring Batch Example Project (Without Spring Boot)
 
-This project demonstrates how to set up a Spring Batch application without using Spring Boot. It includes a simple batch job that downloads and reads data from a CSV file, processes it, and writes the results to a database.
+This project demonstrates how to set up a Spring Batch application without using Spring Boot in regards to [this blog post](https://medium.com/@ibrahimgunduz34/batch-processing-using-spring-batch-with-multiple-data-sources-04e62fef06ff). It includes a simple batch job that downloads and reads data from a CSV file, processes it, and writes the results to a database.
 
 ## Prequisites
 - Java 11 or higher
@@ -64,3 +64,4 @@ $ docker compose \
 exec postgres \
 psql -U postgres -w -d catalog_db -c "SELECT * FROM catalog_products OFFSET 0 LIMIT 10;"
 ```
+
