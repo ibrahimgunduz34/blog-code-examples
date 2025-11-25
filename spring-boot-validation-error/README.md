@@ -1,6 +1,6 @@
 # How to Align Spring Boot Validation Errors with Your JSON Property Naming Strategy
 
-You can reach the blog post [here](#)
+You can reach the blog post [here](https://medium.com/@ibrahimgunduz34/how-to-align-spring-boot-validation-errors-with-your-json-property-naming-strategy-f200c3afcde7)
 
 ## How To Test It
 * Start the application
