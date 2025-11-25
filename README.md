@@ -12,3 +12,4 @@ Some code Examples Created For [My Personal Blog](https://medium.com/@ibrahimgun
 * [How To Solve ‘TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension “.ts” for…’ Error](/unknown-file-extension-ts/)
 * [Caching in Spring Boot](/spring-caching)
 * [JWE Encryption and Decryption](/jose-example)
+* [How to Align Spring Boot Validation Errors with Your JSON Property Naming Strategy](/spring-boot-validation-error)
