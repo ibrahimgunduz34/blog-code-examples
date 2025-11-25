@@ -1,4 +1,4 @@
-package com.seed;
+package org.example;
 
 public class MerchantCreateResponse {
     private final String merchantId;

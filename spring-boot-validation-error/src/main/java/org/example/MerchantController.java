@@ -1,4 +1,4 @@
-package com.seed;
+package org.example;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;

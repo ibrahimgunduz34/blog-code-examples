@@ -1,4 +1,4 @@
-package com.seed;
+package org.example;
 
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.UUID;
