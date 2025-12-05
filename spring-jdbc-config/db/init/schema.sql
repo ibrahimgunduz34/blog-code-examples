@@ -6,4 +6,5 @@ CREATE TABLE IF NOT EXISTS Configurations (
     );
 
 INSERT INTO Configurations VALUES
-('notification.service.accountId', '1234567', 'default');
+('payment.provider.accountId', '1234567', 'dev'),
+('payment.provider.merchantId', '098765', 'dev');

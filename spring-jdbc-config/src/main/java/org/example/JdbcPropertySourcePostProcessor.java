@@ -12,14 +12,14 @@ import javax.sql.DataSource;
 public class JdbcPropertySourcePostProcessor implements EnvironmentPostProcessor {
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        Binder binder = Binder.get(environment);
-
-        DataSourceProperties dataSourceProperties = binder.bind("spring.datasource", Bindable.of(DataSourceProperties.class))
+        DataSourceProperties dataSourceProperties = Binder.get(environment)
+                .bind("spring.datasource", Bindable.of(DataSourceProperties.class))
                 .orElse(new DataSourceProperties());
 
         DataSource dataSource = dataSourceProperties.initializeDataSourceBuilder().build();
+        JdbcDataSource jdbcDataSource = new JdbcDataSource(dataSource);
+        JdbcPropertySource jdbcPropertySource = new JdbcPropertySource("jdbc-property-source", jdbcDataSource, environment);
 
-        JdbcPropertySource jdbcPropertySource = new JdbcPropertySource("jdbc-property-source", dataSource, environment);
-        environment.getPropertySources().addFirst(jdbcPropertySource);
+        environment.getPropertySources().addLast(jdbcPropertySource);
     }
 }
