@@ -14,3 +14,4 @@ Some code Examples Created For [My Personal Blog](https://medium.com/@ibrahimgun
 * [JWE Encryption and Decryption](/jose-example)
 * [How to Align Spring Boot Validation Errors with Your JSON Property Naming Strategy](/spring-boot-validation-error)
 * [A Practical Guide to Google Guice](/google-guice-demo)
+* [Protecting Sensitive Data Using Envelope Encryption](/envelope-encryption)
