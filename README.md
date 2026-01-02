@@ -15,3 +15,4 @@ Some code Examples Created For [My Personal Blog](https://medium.com/@ibrahimgun
 * [How to Align Spring Boot Validation Errors with Your JSON Property Naming Strategy](/spring-boot-validation-error)
 * [A Practical Guide to Google Guice](/google-guice-demo)
 * [Protecting Sensitive Data Using Envelope Encryption](/envelope-encryption)
+* [Versioning Redis Cache Keys to Prevent Stale Data During Spring Boot Deployments](/cache-versioning)
