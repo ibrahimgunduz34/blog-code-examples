@@ -1,0 +1,13 @@
+services:
+  redis:
+    image: redis:8.4-alpine3.22
+    ports:
+      - 6379:6379
+  postgresql:
+    image: postgres:18.1-alpine3.23
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: AppUser
+      POSTGRES_PASSWORD: AppPassword
+      POSTGRES_DB: AppDatabase
