@@ -17,7 +17,8 @@ public class UserProfileService {
         return new UserProfile(
                 user.getId(),
                 user.getFirstName(),
-                user.getLastName()
+                user.getLastName(),
+                user.getEmail()
         );
     }
 }

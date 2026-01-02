@@ -6,21 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 
-import java.util.Properties;
-
 @Configuration
 public class CacheConfiguration {
     @Bean
     public RedisCacheConfiguration redisCacheConfiguration(ObjectProvider<BuildProperties> buildPropertiesProvider) {
-        String version = buildPropertiesProvider.getIfAvailable(this::getDefaultBuildProperties).getVersion();
-        
-        return RedisCacheConfiguration.defaultCacheConfig()
-                .prefixCacheNameWith(version + ":");
-    }
+        BuildProperties buildProperties = buildPropertiesProvider.getIfAvailable();
 
-    private BuildProperties getDefaultBuildProperties() {
-        Properties props = new Properties();
-        props.setProperty("version", "dev");
-        return new BuildProperties(props);
+        String name = buildProperties != null ? buildProperties.getName() : "application";
+        String version = buildProperties != null ? buildProperties.getVersion() : "dev";
+
+        return RedisCacheConfiguration.defaultCacheConfig()
+                .prefixCacheNameWith(String.format("%s:%s:", name, version));
     }
 }
