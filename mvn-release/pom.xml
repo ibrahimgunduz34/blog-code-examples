@@ -4,7 +4,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>mvn-release</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -14,7 +14,7 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:ibrahimgunduz34/blog-code-examples.git</developerConnection>
-      <tag>mvn-release-1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <build>
