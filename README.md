@@ -16,3 +16,4 @@ Some code Examples Created For [My Personal Blog](https://medium.com/@ibrahimgun
 * [A Practical Guide to Google Guice](/google-guice-demo)
 * [Protecting Sensitive Data Using Envelope Encryption](/envelope-encryption)
 * [Versioning Redis Cache Keys to Prevent Stale Data During Spring Boot Deployments](/cache-versioning)
+* [Circuit Breaker in Inter-Service Communication](/circuit-breaker)
