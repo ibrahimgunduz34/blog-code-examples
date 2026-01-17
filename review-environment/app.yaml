@@ -1,0 +1,33 @@
+services:
+  app:
+    image: myapp:${CI_COMMIT_REF_NAME}
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_VHOST: ${CI_COMMIT_REF_NAME}
+      RABBITMQ_USER: ${CI_COMMIT_REF_NAME}_user
+      RABBITMQ_PASSWORD: YourStrongPassword
+      POSTGRESQL_HOST: pgsql
+      POSTGRESQL_PORT: 5432
+      POSTGRESQL_DBNAME: app_${CI_COMMIT_REF_NAME}
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_PASSWORD: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      CACHE_KEY_PREFIX: "${CI_COMMIT_REF_NAME}:"
+    networks:
+      - backend_net
+      - ingress_net
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.app-${CI_COMMIT_REF_NAME}.rule=Host(`${CI_COMMIT_REF_NAME}.example.com`)"
+        - "traefik.http.routers.app-${CI_COMMIT_REF_NAME}.entrypoints=web"
+        - "traefik.http.services.app-${CI_COMMIT_REF_NAME}.loadbalancer.server.port=8080"
+
+networks:
+  ingress_net:
+    external: true
+  backend_net:
+    external: true
+
