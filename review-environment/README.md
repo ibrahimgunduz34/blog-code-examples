@@ -12,3 +12,5 @@ $ curl -H "Host: MF-443.example.com" http://127.0.0.1
 
 Current version is: MF-443
 ```
+
+To stop/remove the deployment and remove the resources, run `./run-cleanup.sh`
