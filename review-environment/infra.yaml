@@ -7,7 +7,7 @@ services:
     ports:
       - 5432:5432
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U appuser -d appdb" ]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 2s
       timeout: 120s
       retries: 15
