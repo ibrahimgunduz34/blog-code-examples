@@ -5,7 +5,7 @@ Blog post:
 
 Once you initialized Docker Swarm, you can create an example deployment by running `./run-example-deployment.sh`.
 
-Then call the test endpoint from the deployed instance a few seconds later
+Next, call the test endpoint from the deployed instance a few seconds later after the deployment
 
 ```shell
 $ curl -H "Host: MF-443.example.com" http://127.0.0.1
