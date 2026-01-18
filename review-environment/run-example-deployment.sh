@@ -5,6 +5,9 @@ export CI_COMMIT_REF_NAME=MF-443
 # deploy shared services
 docker stack deploy -c infra.yaml infra --detach
 
+echo "Waiting 10 seconds..."
+sleep 10
+
 # build the application container image
 docker build \
   --build-arg CI_COMMIT_REF_NAME=${CI_COMMIT_REF_NAME} \
