@@ -21,7 +21,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.docker.network=ingress_net"
+        - "traefik.swarm.network=ingress_net"
         - "traefik.http.routers.app-${CI_COMMIT_REF_NAME}.rule=Host(`${CI_COMMIT_REF_NAME}.example.com`)"
         - "traefik.http.routers.app-${CI_COMMIT_REF_NAME}.entrypoints=web"
         - "traefik.http.services.app-${CI_COMMIT_REF_NAME}.loadbalancer.server.port=8080"

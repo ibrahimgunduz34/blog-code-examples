@@ -60,20 +60,16 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
 
   traefik:
-    image: traefik:v2.11
+    image: traefik:v3.6.7
     command:
-      - "--providers.docker=true"
-      - "--providers.docker.swarmmode=true"
-      - "--providers.docker.exposedbydefault=false"
+      - "--providers.swarm=true"
+      - "--providers.swarm.exposedByDefault=false"
       - "--entrypoints.web.address=:80"
       - "--ping=true"
       - "--ping.entrypoint=web"
       - "--log.level=INFO"
-      - "--api.dashboard=true"
-      - "--api.insecure=true"
     ports:
       - "80:80"
-      - "8081:8080"
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://localhost/ping" ]
       interval: 5s

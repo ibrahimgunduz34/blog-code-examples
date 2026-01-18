@@ -2,6 +2,10 @@
 
 export CI_COMMIT_REF_NAME=MF-443
 
+# Create ingress_net and backend_net
+docker network create --driver overlay ingress_net && \
+  docker network create --driver overlay backend_net
+
 # deploy shared services
 docker stack deploy -c infra.yaml infra --detach
 
