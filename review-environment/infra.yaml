@@ -1,6 +1,6 @@
 services:
   pgsql:
-    image: postgres:17.0
+    image: postgres:18.1
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
