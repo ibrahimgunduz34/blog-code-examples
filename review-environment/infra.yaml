@@ -13,7 +13,7 @@ services:
       retries: 15
       start_period: 30s
     volumes:
-      - postgresql_data:/var/lib/postgresql/data:Z
+      - postgresql_data:/var/lib/postgresql:Z
     deploy:
       restart_policy:
         condition: on-failure
